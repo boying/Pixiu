@@ -4,13 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Created by jiangzhiwen on 17/4/7.
- */
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Item {
+public class Item implements Serializable{
     private int type;
     private String desc;
 }
