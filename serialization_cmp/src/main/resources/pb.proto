@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "bean";
+option java_outer_classname = "PbBean";
+
+message Person {
+    string id = 1;
+    int32 age = 2;
+    bool married = 3;
+    repeated Item list = 4;
+    map<string, Item> map = 5;
+
+}
+
+message Item {
+    int32 type = 1;
+    string desc = 2;
+}

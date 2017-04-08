@@ -1,11 +1,14 @@
 package main;
 
 import bean.Item;
+import bean.PbBean;
 import bean.Person;
 import com.google.common.collect.ImmutableMap;
 import executor.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,7 +20,9 @@ public class Main {
                 ImmutableMap.of("a", new Item(1, "desc1"), "b", new Item(2, "desc2"))
         );
 
-        test(Person.class, person, 1000000);
+        int times = 1000000;
+        test(Person.class, person, times);
+        testPb(person, times);
     }
 
     public static <T> void test(Class<T> clazz, T obj, int times) {
@@ -40,6 +45,31 @@ public class Main {
         ds = javaExecutor.deserialize(times);
         out("Java", ss, ds);
         System.out.println();
+    }
+
+    public static void testPb(Person person, int times) {
+        List<PbBean.Item> items = new ArrayList<>();
+        items.add(PbBean.Item.newBuilder().setType(1).setDesc("desc1").build());
+        items.add(PbBean.Item.newBuilder().setType(2).setDesc("desc2").build());
+        items.add(PbBean.Item.newBuilder().setType(3).setDesc("desc3").build());
+
+
+        PbBean.Person pbPerson = PbBean.Person.newBuilder()
+                .setId(person.getId())
+                .setAge(person.getAge())
+                .addAllList(items)
+                .putAllMap(ImmutableMap.of(
+                        "a",
+                        PbBean.Item.newBuilder().setType(1).setDesc("desc1").build(),
+                        "b",
+                        PbBean.Item.newBuilder().setType(2).setDesc("desc2").build()
+                ))
+                .build();
+
+        PbExecutor<PbBean.Person> personPbExecutor = new PbExecutor<>(PbBean.Person.class, pbPerson);
+        SerializeStatistics serialize = personPbExecutor.serialize(times);
+        DeserializeStatistics deserialize = personPbExecutor.deserialize(times);
+        out("ProtoBuf", serialize, deserialize);
     }
 
     public static void out(String title, SerializeStatistics serializeStatistics,
