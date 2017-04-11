@@ -12,6 +12,7 @@
         <module>asm</module>
         <module>serialization_cmp</module>
         <module>protobuf</module>
+        <module>spring</module>
     </modules>
 
     <dependencies>
