@@ -13,6 +13,7 @@
         <module>serialization_cmp</module>
         <module>protobuf</module>
         <module>spring</module>
+        <module>multi_thread</module>
     </modules>
 
     <dependencies>
