@@ -1,6 +1,7 @@
 package multi_thread;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import org.testng.annotations.Test;
 
 import java.io.*;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -19,7 +20,8 @@ public class TPTest {
      * 如果allowCoreThreadTimeOut为true,那么在任务执行完之后,系统会回收核心线程
      */
 
-    public void testCoreThreadLife() {
+    @Test
+    void testCoreThreadLife() {
         boolean allowCoreThreadTimeOut = true;
         int totalThreadSize = 10;
         ThreadPoolExecutor tp = new ThreadPoolExecutor(
@@ -53,7 +55,8 @@ public class TPTest {
      * 在线程池被shutdown前提交的任务,都会被执行
      * 在shutdown之后提交任务,线程池会拒绝接受任务
      */
-    public static void testShutDown() throws Exception {
+    @Test
+    void testShutDown() throws Exception {
         int totalThreadSize = 10;
         ThreadPoolExecutor tp = new ThreadPoolExecutor(
                 5,
@@ -87,15 +90,6 @@ public class TPTest {
         });
 
         System.out.println("thread pool shutdown");
-
-
-        try(
-        new AutoCloseable() {
-            @Override
-            public void close() {
-            }
-        }){
-        }
 
 
     }
