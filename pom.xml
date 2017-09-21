@@ -16,6 +16,7 @@
         <module>multi_thread</module>
         <module>es</module>
         <module>zk</module>
+        <module>test</module>
     </modules>
 
     <dependencies>
