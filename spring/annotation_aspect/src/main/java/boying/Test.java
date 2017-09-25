@@ -5,9 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by jiangzhiwen592 on 2017/9/25.
- */
+
 @Component
 public class Test {
     @Echo(before = "BEFORE", after = "AFTER", exceptions = {"E1", "E2"})

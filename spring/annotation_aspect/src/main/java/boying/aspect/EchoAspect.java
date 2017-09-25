@@ -9,9 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 
-/**
- * Created by jiangzhiwen592 on 2017/9/25.
- */
 @Aspect
 @Component
 public class EchoAspect {
