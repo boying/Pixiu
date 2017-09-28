@@ -3,9 +3,9 @@ package executor;
 import bean.PbBean;
 import com.google.protobuf.AbstractMessageLite;
 
-public class PbExecutor<T extends AbstractMessageLite> extends Executor<T> {
+public class PBExecutor<T extends AbstractMessageLite> extends Executor<T> {
 
-    public PbExecutor(Class<T> clazz, T obj) {
+    public PBExecutor(Class<T> clazz, T obj) {
         super(clazz, obj);
     }
 
@@ -25,5 +25,15 @@ public class PbExecutor<T extends AbstractMessageLite> extends Executor<T> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public String serializeToStr() {
+       throw new RuntimeException("not supported");
+    }
+
+    @Override
+    public T deserializeFromStr(String json) {
+        throw new RuntimeException("not supported");
     }
 }

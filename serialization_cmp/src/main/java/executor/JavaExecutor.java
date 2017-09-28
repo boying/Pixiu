@@ -48,4 +48,45 @@ public class JavaExecutor<T> extends Executor<T> {
             }
         }
     }
+
+    @Override
+    public String serializeToStr() {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutput out = null;
+        try {
+            out = new ObjectOutputStream(bos);
+            out.writeObject(obj);
+            out.flush();
+            return bos.toString();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+    }
+
+    @Override
+    public T deserializeFromStr(String json) {
+        ByteArrayInputStream bis = new ByteArrayInputStream(json.getBytes());
+        ObjectInput in = null;
+        try {
+            in = new ObjectInputStream(bis);
+            return (T) in.readObject();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            if(in != null){
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

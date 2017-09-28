@@ -27,4 +27,22 @@ public class JacksonExecutor<T> extends Executor<T> {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public String serializeToStr() {
+        try {
+            return mapper.writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public T deserializeFromStr(String json) {
+        try {
+            return mapper.readValue(json, clazz);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

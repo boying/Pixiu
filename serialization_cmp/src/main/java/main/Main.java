@@ -20,16 +20,21 @@ public class Main {
                 ImmutableMap.of("a", new Item(1, "desc1"), "b", new Item(2, "desc2"))
         );
 
+        System.out.println("#############################################");
         int times = 1000000;
         test(Person.class, person, times);
         testPb(person, times);
+
+        System.out.println("#############################################");
+        test1(Person.class, person, times);
     }
 
     public static <T> void test(Class<T> clazz, T obj, int times) {
-
         JacksonExecutor<T> jacksonExecutor = new JacksonExecutor<>(clazz, obj);
         FastjsonExecutor<T> fastjsonExecutor = new FastjsonExecutor<>(clazz, obj);
+        GsonExecutor<T> gsonExecutor = new GsonExecutor<>(clazz, obj);
         JavaExecutor<T> javaExecutor = new JavaExecutor<>(clazz, obj);
+
 
         SerializeStatistics ss = jacksonExecutor.serialize(times);
         DeserializeStatistics ds = jacksonExecutor.deserialize(times);
@@ -39,6 +44,11 @@ public class Main {
         ss = fastjsonExecutor.serialize(times);
         ds = fastjsonExecutor.deserialize(times);
         out("Fastjson", ss, ds);
+        System.out.println();
+
+        ss = gsonExecutor.serialize(times);
+        ds = gsonExecutor.deserialize(times);
+        out("Gson", ss, ds);
         System.out.println();
 
         ss = javaExecutor.serialize(times);
@@ -66,10 +76,40 @@ public class Main {
                 ))
                 .build();
 
-        PbExecutor<PbBean.Person> personPbExecutor = new PbExecutor<>(PbBean.Person.class, pbPerson);
+        PBExecutor<PbBean.Person> personPbExecutor = new PBExecutor<>(PbBean.Person.class, pbPerson);
         SerializeStatistics serialize = personPbExecutor.serialize(times);
         DeserializeStatistics deserialize = personPbExecutor.deserialize(times);
         out("ProtoBuf", serialize, deserialize);
+    }
+
+    public static <T> void test1(Class<T> clazz, T obj, int times) {
+        JacksonExecutor<T> jacksonExecutor = new JacksonExecutor<>(clazz, obj);
+        FastjsonExecutor<T> fastjsonExecutor = new FastjsonExecutor<>(clazz, obj);
+        GsonExecutor<T> gsonExecutor = new GsonExecutor<>(clazz, obj);
+        JavaExecutor<T> javaExecutor = new JavaExecutor<>(clazz, obj);
+
+
+        SerializeStatistics ss = jacksonExecutor.serializeToStr(times);
+        DeserializeStatistics ds = jacksonExecutor.deserializeFromStr(times);
+        out("Jackson", ss, ds);
+        System.out.println();
+
+        ss = fastjsonExecutor.serializeToStr(times);
+        ds = fastjsonExecutor.deserializeFromStr(times);
+        out("Fastjson", ss, ds);
+        System.out.println();
+
+        ss = gsonExecutor.serializeToStr(times);
+        ds = gsonExecutor.deserializeFromStr(times);
+        out("Gson", ss, ds);
+        System.out.println();
+
+        /*
+        ss = javaExecutor.serializeToStr(times);
+        ds = javaExecutor.deserializeFromStr(times);
+        out("Java", ss, ds);
+        System.out.println();
+        */
     }
 
     public static void out(String title, SerializeStatistics serializeStatistics,

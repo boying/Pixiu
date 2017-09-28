@@ -1,17 +1,18 @@
 package executor;
 
-import com.alibaba.fastjson.JSON;
+import com.google.gson.Gson;
 
-public class FastjsonExecutor<T> extends Executor<T> {
+public class GsonExecutor<T> extends Executor<T> {
+    private Gson gson = new Gson();
 
-    public FastjsonExecutor(Class<T> clazz, T obj) {
+    public GsonExecutor(Class<T> clazz, T obj) {
         super(clazz, obj);
     }
 
     @Override
     public byte[] serialize() {
         try {
-            return JSON.toJSONBytes(obj);
+            return gson.toJson(obj).getBytes();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -20,7 +21,7 @@ public class FastjsonExecutor<T> extends Executor<T> {
     @Override
     public T deserialize(byte[] bytes) {
         try {
-            return JSON.parseObject(bytes, clazz);
+             return gson.fromJson(new String(bytes), clazz);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -29,7 +30,7 @@ public class FastjsonExecutor<T> extends Executor<T> {
     @Override
     public String serializeToStr() {
         try {
-            return JSON.toJSONString(obj);
+            return gson.toJson(obj);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -38,7 +39,7 @@ public class FastjsonExecutor<T> extends Executor<T> {
     @Override
     public T deserializeFromStr(String json) {
         try {
-            return JSON.parseObject(json, clazz);
+            return gson.fromJson(json, clazz);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
