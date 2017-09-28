@@ -1,6 +1,7 @@
+import bean.Data;
+import bean.Result;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
-import bean.Result;
 
 import java.io.IOException;
 
@@ -17,8 +18,19 @@ public class JacksonTest extends BaseTest {
         System.out.println(json);
 
         Result result = mapper.readValue(json, Result.class);
-        cmp(result);
+        cmpResult(result);
     }
+
+    @Test
+    public void test2() throws IOException {
+        String json = mapper.writeValueAsString(standardData);
+
+        System.out.println(json);
+
+        Data data = mapper.readValue(json, Data.class);
+        cmpData(data);
+    }
+
 
 }
 

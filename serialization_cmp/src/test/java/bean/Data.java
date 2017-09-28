@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class Data {
     private Long id;
-    private LocalDateTime time;
+    private LocalDateTime localDateTime;
     private Date date;
     private Timestamp timestamp;
     private String content;
@@ -19,6 +19,9 @@ public class Data {
     private List<String> stringList;
     private Map<String, String> map;
     private List<V> vs;
+    private Integer[] integers;
+    private V[] arrays;
+    private Object alwaysNull;
 
     public Long getId() {
         return id;
@@ -28,12 +31,12 @@ public class Data {
         this.id = id;
     }
 
-    public LocalDateTime getTime() {
-        return time;
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
     }
 
-    public void setTime(LocalDateTime time) {
-        this.time = time;
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
     }
 
     public Date getDate() {
@@ -90,5 +93,29 @@ public class Data {
 
     public void setVs(List<V> vs) {
         this.vs = vs;
+    }
+
+    public Integer[] getIntegers() {
+        return integers;
+    }
+
+    public void setIntegers(Integer[] integers) {
+        this.integers = integers;
+    }
+
+    public V[] getArrays() {
+        return arrays;
+    }
+
+    public void setArrays(V[] arrays) {
+        this.arrays = arrays;
+    }
+
+    public Object getAlwaysNull() {
+        return alwaysNull;
+    }
+
+    public void setAlwaysNull(Object alwaysNull) {
+        this.alwaysNull = alwaysNull;
     }
 }
