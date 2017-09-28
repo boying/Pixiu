@@ -1,12 +1,12 @@
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooKeeper;
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by jiangzhiwen592 on 2017/5/31.
+ * Created by boying on 2017/5/31.
  */
 public class ZKTest {
     /**

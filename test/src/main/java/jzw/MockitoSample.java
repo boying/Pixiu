@@ -5,7 +5,7 @@ import org.mockito.Mockito;
 import java.util.LinkedList;
 
 /**
- * Created by jiangzhiwen592 on 2017/9/21.
+ * Created by boying on 2017/9/21.
  */
 public class MockitoSample {
     public static void main(String[] args) {
