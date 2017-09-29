@@ -1,5 +1,6 @@
 package bean;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -10,11 +11,14 @@ import java.util.Map;
  * Created by boying on 2017/9/28.
  */
 public class Data {
-    private Long id;
+    private Long longValue;
+    private Integer integer;
+    private BigDecimal bigDecimal;
+    private Double doubleValue;
+    private String string;
     private LocalDateTime localDateTime;
     private Date date;
     private Timestamp timestamp;
-    private String content;
     private List<Integer> integerList;
     private List<String> stringList;
     private Map<String, String> map;
@@ -23,12 +27,12 @@ public class Data {
     private V[] arrays;
     private Object alwaysNull;
 
-    public Long getId() {
-        return id;
+    public Long getLongValue() {
+        return longValue;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setLongValue(Long longValue) {
+        this.longValue = longValue;
     }
 
     public LocalDateTime getLocalDateTime() {
@@ -55,12 +59,12 @@ public class Data {
         this.timestamp = timestamp;
     }
 
-    public String getContent() {
-        return content;
+    public String getString() {
+        return string;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setString(String string) {
+        this.string = string;
     }
 
     public List<Integer> getIntegerList() {
@@ -117,5 +121,29 @@ public class Data {
 
     public void setAlwaysNull(Object alwaysNull) {
         this.alwaysNull = alwaysNull;
+    }
+
+    public Integer getInteger() {
+        return integer;
+    }
+
+    public void setInteger(Integer integer) {
+        this.integer = integer;
+    }
+
+    public BigDecimal getBigDecimal() {
+        return bigDecimal;
+    }
+
+    public void setBigDecimal(BigDecimal bigDecimal) {
+        this.bigDecimal = bigDecimal;
+    }
+
+    public Double getDoubleValue() {
+        return doubleValue;
+    }
+
+    public void setDoubleValue(Double doubleValue) {
+        this.doubleValue = doubleValue;
     }
 }

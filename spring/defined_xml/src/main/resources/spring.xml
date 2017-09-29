@@ -5,6 +5,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.boying.com/schema/pixiu  http://www.boying.com/schema/pixiu.xsd">
 
-    <pixiu:user id="user0" userName="abc" email="xxx@abc.com" />
+    <pixiu:user longValue="user0" userName="abc" email="xxx@abc.com" />
 
 </beans>

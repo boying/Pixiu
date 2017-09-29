@@ -5,7 +5,7 @@
 
     <element name="user">
         <complexType>
-            <attribute name="id" type="string" />
+            <attribute name="longValue" type="string" />
             <attribute name="userName" type="string" />
             <attribute name="email" type="string" />
         </complexType>

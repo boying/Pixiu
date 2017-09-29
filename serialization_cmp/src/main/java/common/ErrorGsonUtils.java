@@ -2,7 +2,6 @@ package common;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import jdk.nashorn.internal.parser.TokenType;
 
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
@@ -10,11 +9,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
-
 /**
- * Created by boying on 2017/9/28.
+ * Created by boying on 2017/9/29.
  */
-public class GsonUtils {
+public class ErrorGsonUtils {
     private static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss.SSS";
     private static Gson gson;
     static{
@@ -29,7 +27,7 @@ public class GsonUtils {
         JsonDeserializer<LocalDateTime> deserializer = new JsonDeserializer<LocalDateTime>() {
             @Override
             public LocalDateTime deserialize(JsonElement json, Type typeOfT,
-                                    JsonDeserializationContext context) throws JsonParseException {
+                                             JsonDeserializationContext context) throws JsonParseException {
                 return json == null ? null : LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ofPattern(DATE_TIME_PATTERN));
             }
         };
@@ -43,5 +41,33 @@ public class GsonUtils {
 
     public static Gson getGson(){
         return gson;
+    }
+
+    /**
+     * 错误的方法!!!
+     * @param json
+     * @param <T>
+     * @return
+     */
+    @Deprecated
+    public static <T> List<T> parseList(String json){
+        return gson.fromJson(json, new TypeToken<List<T>>(){}.getType());
+    }
+
+    /**
+     * 错误的方法!!!
+     * TODO Why
+     * @param json
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    @Deprecated
+    public static <T> List<T> parseList(String json, Class<T> clazz){
+        return gson.fromJson(json, new TypeToken<List<T>>(){}.getType());
+    }
+
+    public static <T> Map<String, T> parseMap(String json, Class<T> valueClazz){
+        return null;
     }
 }

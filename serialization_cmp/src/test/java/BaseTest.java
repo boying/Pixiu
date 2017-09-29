@@ -1,16 +1,16 @@
 import bean.Result;
+import bean.StatusEnum;
 import bean.V;
 import com.google.common.collect.ImmutableMap;
-import org.junit.Assert;
 import org.junit.Before;
 import bean.Data;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 
 import static org.junit.Assert.*;
 
@@ -28,12 +28,16 @@ public class BaseTest {
         standardResult.setRetCode(code);
         standardResult.setMsg(msg);
         standardResult.setData(standardData);
+        standardResult.setStatusEnum(StatusEnum.FAILED);
 
-        standardData.setId(888L);
+        standardData.setLongValue(888L);
+        standardData.setInteger(2);
+        standardData.setBigDecimal(BigDecimal.valueOf(3.1415926));
+        standardData.setDoubleValue(3.1415926);
         standardData.setLocalDateTime(LocalDateTime.now());
         standardData.setDate(new Date());
         standardData.setTimestamp(Timestamp.valueOf(LocalDateTime.now()));
-        standardData.setContent("contest");
+        standardData.setString("contest");
         standardData.setIntegerList(Arrays.asList(1, 2, null, 5));
         standardData.setStringList(Arrays.asList("abc", null, "def"));
         standardData.setMap(ImmutableMap.of("k1", "v1", "k2", "v2"));
@@ -42,21 +46,26 @@ public class BaseTest {
         standardData.setArrays(new V[]{new V(1L), new V(2L), null, new V(3L)});
     }
 
+
     protected void cmpResult(Result<Data> result) {
         assertEquals(standardResult.getRetCode(), result.getRetCode());
         assertEquals(standardResult.getMsg(), result.getMsg());
+        assertEquals(standardResult.getStatusEnum(), result.getStatusEnum());
 
         Data data = result.getData();
         cmpData(data);
     }
 
     protected void cmpData(Data data) {
-        assertEquals(standardData.getId(), data.getId());
+        assertEquals(standardData.getLongValue(), data.getLongValue());
+        assertEquals(standardData.getInteger(), data.getInteger());
+        assertEquals(standardData.getBigDecimal(), data.getBigDecimal());
+        assertEquals(standardData.getDoubleValue(), data.getDoubleValue());
         assertEquals(standardData.getLocalDateTime(), data.getLocalDateTime());
 
         assertEquals(standardData.getDate(), data.getDate());
         assertEquals(standardData.getTimestamp(), data.getTimestamp());
-        assertEquals(standardData.getContent(), data.getContent());
+        assertEquals(standardData.getString(), data.getString());
         assertEquals(standardData.getIntegerList(), data.getIntegerList());
         assertEquals(standardData.getStringList(), data.getStringList());
         assertEquals(standardData.getMap(), data.getMap());

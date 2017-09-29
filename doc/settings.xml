@@ -10,10 +10,10 @@
   <servers/>
   <mirrors>
       <mirror>
-        <id>nexus-aliyun</id>
+        <longValue>nexus-aliyun</longValue>
         <mirrorOf>*</mirrorOf>
         <name>Nexus aliyun</name>
-        <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        <url>http://maven.aliyun.com/nexus/string/groups/public</url>
     </mirror> 
   </mirrors>
   <proxies/>
