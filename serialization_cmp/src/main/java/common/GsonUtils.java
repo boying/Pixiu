@@ -2,13 +2,10 @@ package common;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import jdk.nashorn.internal.parser.TokenType;
 
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -43,5 +40,9 @@ public class GsonUtils {
 
     public static Gson getGson(){
         return gson;
+    }
+
+    public static <T> T fromJson(String json, TypeToken<T> typeToken){
+        return gson.fromJson(json, typeToken.getType());
     }
 }

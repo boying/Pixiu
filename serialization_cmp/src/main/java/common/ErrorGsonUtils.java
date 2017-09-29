@@ -67,6 +67,10 @@ public class ErrorGsonUtils {
         return gson.fromJson(json, new TypeToken<List<T>>(){}.getType());
     }
 
+    public static <T> List<T> parseList(String json, TypeToken<List<T>> typeToken){
+        return gson.fromJson(json, typeToken.getType());
+    }
+
     public static <T> Map<String, T> parseMap(String json, Class<T> valueClazz){
         return null;
     }

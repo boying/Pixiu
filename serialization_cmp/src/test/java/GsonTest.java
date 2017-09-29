@@ -7,12 +7,12 @@ import com.google.gson.reflect.TypeToken;
 import common.GsonUtils;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by boying on 2017/9/28.

@@ -4,16 +4,20 @@ import bean.V;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by boying on 2017/9/29.
  */
 public class ErrorGsonUtilsTest {
     private Gson gson = ErrorGsonUtils.getGson();
+
+    List<V> vs = Arrays.asList(new V(1L), new V(2L), null, new V());
+    String vsJson = gson.toJson(vs);
 
     @Test
     public void parseList() throws Exception {
@@ -45,6 +49,13 @@ public class ErrorGsonUtilsTest {
         assertEquals(vs, vs1);
 
         System.out.println("");
+    }
+
+    @Test
+    public void test(){
+        List<V> vs = ErrorGsonUtils.parseList(vsJson, new TypeToken<List<V>>() {
+        });
+        assertEquals(vs, this.vs);
     }
 
     @Test

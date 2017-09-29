@@ -1,9 +1,9 @@
+import bean.Data;
 import bean.Result;
 import bean.StatusEnum;
 import bean.V;
 import com.google.common.collect.ImmutableMap;
 import org.junit.Before;
-import bean.Data;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by boying on 2017/9/28.

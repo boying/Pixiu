@@ -4,8 +4,6 @@ import com.example.tutorial.AddressBookProtos;
 import com.google.common.collect.ImmutableMap;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import java.util.HashMap;
-
 /**
  * Created by jiangzhiwen on 17/4/7.
  */
