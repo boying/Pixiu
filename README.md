@@ -13,4 +13,3 @@
 * java array的class是啥？
 * 在method里创建匿名子类对象，匿名子类会添加到方法区（永久代）吗？
 * java reflect中Type, Gson TypeToken原理，值得思考。TypeToken子类对象传递泛型类型的方式可供参考
-
