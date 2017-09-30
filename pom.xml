@@ -17,6 +17,7 @@
         <module>es</module>
         <module>zk</module>
         <module>test</module>
+        <module>redis</module>
     </modules>
 
     <dependencies>
