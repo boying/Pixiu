@@ -4,7 +4,7 @@ option java_package = "bean";
 option java_outer_classname = "PbBean";
 
 message Person {
-    string longValue = 1;
+    string id = 1;
     int32 age = 2;
     bool married = 3;
     repeated Item list = 4;

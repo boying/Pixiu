@@ -57,7 +57,7 @@ curl -XGET 'localhost:9200/_cat/shards?pretty'
 
 curl -XGET 'localhost:9200/_cat/nodes?v&pretty'
 
-curl -XGET 'localhost:9200/_cat/nodes?v&h=name,longValue,ip,port,v,m&pretty'
+curl -XGET 'localhost:9200/_cat/nodes?v&h=name,id,ip,port,v,m&pretty'
 
 ### 查看分片状态
 
