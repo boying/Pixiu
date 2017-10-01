@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/rabbit
+                http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd">
+
+    <context:property-placeholder location="classpath:rabbitmq.properties"/>
+
+    <!-- 连接服务配置  -->
+    <rabbit:connection-factory id="connectionFactory"
+                               host="${rabbitmq.host}"
+                               port="${rabbitmq.port}"
+                               virtual-host="${rabbitmq.virtualhost}"
+                               username="${rabbitmq.username}"
+                               password="${rabbitmq.password}"/>
+
+    <!--通过指定下面的admin信息，当前producer中的exchange和queue会在rabbitmq服务器上自动生成-->
+    <rabbit:admin connection-factory="connectionFactory"/>
+
+    <!--定义queue-->
+    <rabbit:queue id="boyingQueue" name="boyingQueue" durable="true" auto-delete="false" exclusive="false"/>
+
+    <!-- 定义direct exchange，绑定com.mj.test queue -->
+    <rabbit:direct-exchange name="boyingDirChange" durable="true" auto-delete="false">
+        <rabbit:bindings>
+            <rabbit:binding queue="boyingQueue" key="hello"/>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+    <!--定义rabbit template用于数据的接收和发送-->
+    <rabbit:template id="rabbitTemplate" connection-factory="connectionFactory" exchange="boyingDirChange"/>
+
+    <bean id="myMessageListener" class="boying.MyMessageListener"/>
+
+    <rabbit:listener-container connection-factory="connectionFactory">
+        <rabbit:listener queues="boyingQueue" ref="myMessageListener"/>
+    </rabbit:listener-container>
+
+</beans>

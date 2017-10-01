@@ -1,0 +1,7 @@
+./rabbitmq-server.bat stop
+
+./rabbitmqctl.bat status
+
+rabbitmqctl.bat list_users
+
+rabbitmqctl.bat list_vhosts

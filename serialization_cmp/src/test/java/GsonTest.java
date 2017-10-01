@@ -14,7 +14,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-/**
+/*
  * Created by boying on 2017/9/28.
  */
 public class GsonTest extends BaseTest {
