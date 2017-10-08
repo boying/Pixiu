@@ -25,22 +25,58 @@
     <rabbit:admin connection-factory="connectionFactory"/>
 
     <!--定义queue-->
-    <rabbit:queue id="boyingQueue" name="boyingQueue" durable="true" auto-delete="false" exclusive="false"/>
+    <rabbit:queue id="boying_queue_to_direct_1" name="boying_queue_to_direct_1" durable="true" auto-delete="false" exclusive="false"/>
+    <rabbit:queue id="boying_queue_to_direct_2" name="boying_queue_to_direct_2" durable="true" auto-delete="false" exclusive="false"/>
 
-    <!-- 定义direct exchange，绑定com.mj.test queue -->
-    <rabbit:direct-exchange name="boyingDirChange" durable="true" auto-delete="false">
+    <!-- 定义direct exchange，绑定queue -->
+    <rabbit:direct-exchange name="boying_direct_exchange" durable="true" auto-delete="false">
         <rabbit:bindings>
-            <rabbit:binding queue="boyingQueue" key="hello"/>
+            <rabbit:binding queue="boying_queue_to_direct_1" key="binding_key_1"/>
+            <rabbit:binding queue="boying_queue_to_direct_2" key="binding_key_2"/>
         </rabbit:bindings>
     </rabbit:direct-exchange>
 
-    <!--定义rabbit template用于数据的接收和发送-->
-    <rabbit:template id="rabbitTemplate" connection-factory="connectionFactory" exchange="boyingDirChange"/>
+    <rabbit:queue id="boying_queue_to_fanout_1" name="boying_queue_to_fanout_1" durable="true" auto-delete="false" exclusive="false"/>
+    <rabbit:queue id="boying_queue_to_fanout_2" name="boying_queue_to_fanout_2" durable="true" auto-delete="false" exclusive="false"/>
 
-    <bean id="myMessageListener" class="boying.MyMessageListener"/>
+    <!-- 定义fanout exchange，绑定queue -->
+    <rabbit:fanout-exchange name="boying_fanout_exchange" durable="true" auto-delete="false">
+        <rabbit:bindings>
+            <rabbit:binding queue="boying_queue_to_fanout_1" />
+            <rabbit:binding queue="boying_queue_to_fanout_2" />
+        </rabbit:bindings>
+    </rabbit:fanout-exchange>
+
+    <rabbit:queue id="boying_queue_to_topic_1" name="boying_queue_to_topic_1" durable="true" auto-delete="false" exclusive="false"/>
+    <rabbit:queue id="boying_queue_to_topic_2" name="boying_queue_to_topic_2" durable="true" auto-delete="false" exclusive="false"/>
+
+    <!-- 定义topic exchange，绑定queue -->
+    <rabbit:topic-exchange name="boying_topic_exchange" durable="true" auto-delete="false">
+        <rabbit:bindings>
+            <rabbit:binding queue="boying_queue_to_topic_1" pattern="a.*"/>
+            <rabbit:binding queue="boying_queue_to_topic_2" pattern="*.b"/>
+        </rabbit:bindings>
+    </rabbit:topic-exchange>
+
+    <bean id="queueToDirect1Listener" class="boying.listener.QueueToDirect1Listener"/>
+    <bean id="queueToDirect2Listener" class="boying.listener.QueueToDirect2Listener"/>
+    <bean id="queueToFanout1Listener" class="boying.listener.QueueToFanout1Listener"/>
+    <bean id="queueToFanout2Listener" class="boying.listener.QueueToFanout2Listener"/>
+    <bean id="queueToTopic1Listener" class="boying.listener.QueueToTopic1Listener"/>
+    <bean id="queueToTopic2Listener" class="boying.listener.QueueToTopic2Listener"/>
 
     <rabbit:listener-container connection-factory="connectionFactory">
-        <rabbit:listener queues="boyingQueue" ref="myMessageListener"/>
+        <rabbit:listener queues="boying_queue_to_direct_1" ref="queueToDirect1Listener"/>
+        <rabbit:listener queues="boying_queue_to_direct_2" ref="queueToDirect2Listener"/>
+        <rabbit:listener queues="boying_queue_to_fanout_1" ref="queueToFanout1Listener"/>
+        <rabbit:listener queues="boying_queue_to_fanout_2" ref="queueToFanout2Listener"/>
+        <rabbit:listener queues="boying_queue_to_topic_1" ref="queueToTopic1Listener"/>
+
+        <rabbit:listener queues="boying_queue_to_topic_2" ref="queueToTopic2Listener"/>
     </rabbit:listener-container>
 
+    <!--定义rabbit template用于数据的接收和发送-->
+    <rabbit:template id="directTemplate" connection-factory="connectionFactory" exchange="boying_direct_exchange"/>
+    <rabbit:template id="fanoutTemplate" connection-factory="connectionFactory" exchange="boying_fanout_exchange"/>
+    <rabbit:template id="topicTemplate" connection-factory="connectionFactory" exchange="boying_topic_exchange"/>
 </beans>
