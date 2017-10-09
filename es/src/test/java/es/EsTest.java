@@ -9,7 +9,7 @@ import org.elasticsearch.index.query.MatchAllQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
