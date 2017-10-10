@@ -20,3 +20,8 @@
 
 * 发送消息
 * direct topic fanout交换机demos
+
+## redis
+
+* 集成spring data redis
+* set get功能封装到RedisUtils

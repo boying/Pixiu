@@ -11,5 +11,11 @@ public class Main {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         StringRedisTemplate template = context.getBean(StringRedisTemplate.class);
         RedisUtils redisUtils = new RedisUtils(template);
+        String value = redisUtils.getString("boyingxxx");
+        System.out.println(value);
+
+        redisUtils.set("hello", "xxxyy");
+        System.out.println(redisUtils.getString("hello"));
+
     }
 }
