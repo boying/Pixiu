@@ -1,0 +1,15 @@
+<h1>Index</h1>
+
+<h2>Book list</h2>
+<table border="1">
+<tr>
+ <th>Book name</th>
+ <th>Book isbn</th>
+</tr>
+#foreach($book in $books)
+  <tr>
+   <td id="tutId_$foreach.count">$book.name</td>
+   <td id="title_$foreach.count">$book.isbn</td>
+  </tr>
+#end
+</table>

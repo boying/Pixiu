@@ -1,0 +1,8 @@
+#set($styles = ["/css/index.css","/css/index2.css"])
+#set($scripts =["/js/index.js", "/js/index2.js"])
+
+<h1>Index</h1>
+
+<h2>Welcome page</h2>
+
+This is just the welcome page
