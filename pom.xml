@@ -20,6 +20,7 @@
         <module>redis</module>
         <module>rabbitmq</module>
         <module>web</module>
+        <module>security</module>
     </modules>
 
     <dependencies>
