@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.security.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Created by boying on 2017/10/31.
@@ -25,9 +26,18 @@ public class KeystoreTest {
         byte[] data = inputStr.getBytes();
 
         String publicKeyString  = RSACoder.encryptBASE64(publicKey.getEncoded());
+
         byte[] encodedData = RSACoder.encryptByPublicKey(data, publicKeyString);
+        byte[] encodedData1 = RSACoder.encryptByPublicKey(data, publicKeyString);
+        byte[] encodedData2 = RSACoder.encryptByPublicKey(data, publicKeyString);
+        // 多次加密相同内容，加密后结果不一样
+        assertNotEquals(encodedData, encodedData1);
+        assertNotEquals(encodedData, encodedData2);
+        assertNotEquals(encodedData1, encodedData2);
+
+
         String privateKeyString = RSACoder.encryptBASE64(privateKey.getEncoded());
-        byte[] decodedData = RSACoder.decryptByPrivateKey(encodedData, privateKeyString);
+       byte[] decodedData = RSACoder.decryptByPrivateKey(encodedData, privateKeyString);
 
         System.err.println("公钥：" + publicKeyString);
         System.err.println("私钥：" + privateKeyString);
@@ -37,4 +47,6 @@ public class KeystoreTest {
         assertEquals(inputStr, outputStr);
 
     }
+
+
 }
