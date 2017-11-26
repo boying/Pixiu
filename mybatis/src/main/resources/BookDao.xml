@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boying.dao.BookDao">
+    <insert id="addBook" parameterType="boying.domain.Book" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO book(name, isbn)
+        VALUES
+        (#{name},#{isbn})
+    </insert>
+
+    <update id="deleteBook">
+        UPDATE book
+        set is_delete = 1
+        WHERE id = #{id}
+    </update>
+
+    <insert id="addBooks" parameterType="java.util.List" flushCache="true">
+        INSERT INTO book(name, isbn)
+        VALUES
+        <foreach collection="list" item="item" separator="," open="(" close=")">
+            #{name},#{isbn}
+        </foreach>
+    </insert>
+
+    <update id="updateBook" parameterType="boying.domain.Book">
+        UPDATE book SET
+        name = #{name},
+        isbn = #{isbn}
+        WHERE id = #{id}
+    </update>
+
+    <select id="getBookById" resultType="boying.domain.Book">
+        SELECT *
+        FROM book
+        WHERE id = #{id}
+    </select>
+
+    <select id="fuzzyQueryBooksByName" resultType="boying.domain.Book" parameterType="java.lang.String">
+        SELECT *
+        FROM book
+        WHERE name like '%${name}%'
+    </select>
+</mapper>
