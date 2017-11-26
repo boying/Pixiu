@@ -1,3 +1,7 @@
+# http://localhost:15672/#/
+
+# The RabbitMQ service starts automatically. You can stop/reinstall/start the RabbitMQ service from the Start Menu.
+
 ./rabbitmq-server.bat stop
 
 ./rabbitmqctl.bat status

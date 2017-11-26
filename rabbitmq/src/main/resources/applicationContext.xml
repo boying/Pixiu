@@ -67,12 +67,14 @@
 
     <rabbit:listener-container connection-factory="connectionFactory">
         <rabbit:listener queues="boying_queue_to_direct_1" ref="queueToDirect1Listener"/>
-        <rabbit:listener queues="boying_queue_to_direct_2" ref="queueToDirect2Listener"/>
         <rabbit:listener queues="boying_queue_to_fanout_1" ref="queueToFanout1Listener"/>
         <rabbit:listener queues="boying_queue_to_fanout_2" ref="queueToFanout2Listener"/>
         <rabbit:listener queues="boying_queue_to_topic_1" ref="queueToTopic1Listener"/>
-
         <rabbit:listener queues="boying_queue_to_topic_2" ref="queueToTopic2Listener"/>
+    </rabbit:listener-container>
+
+    <rabbit:listener-container connection-factory="connectionFactory" acknowledge="manual">
+        <rabbit:listener queues="boying_queue_to_direct_2" ref="queueToDirect2Listener"/>
     </rabbit:listener-container>
 
     <!--定义rabbit template用于数据的接收和发送-->
