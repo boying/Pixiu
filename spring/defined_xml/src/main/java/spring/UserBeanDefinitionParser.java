@@ -6,7 +6,7 @@ import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 
 /**
- * Created by jiangzhiwen on 17/4/11.
+ * Created by boying on 17/4/11.
  */
 public class UserBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
     @Override

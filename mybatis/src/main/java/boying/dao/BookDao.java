@@ -15,7 +15,13 @@ public interface BookDao {
 
     void deleteBook(@Param("id") long id);
 
+    void realDeleteBook(@Param("id") long id);
+
     void updateBook(Book book);
 
+    void updateNameIsbn(@Param("id") long id, @Param("name") String name, @Param("isbn") String isbn);
+
     List<Book> fuzzyQueryBooksByName(@Param("name") String name);
+
+    void addBooks(List<Book> books);
 }

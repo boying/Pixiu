@@ -1,7 +1,7 @@
 package executor;
 
 /**
- * Created by jiangzhiwen on 17/4/7.
+ * Created by boying on 17/4/7.
  */
 public abstract class Executor<T> {
     protected Class<T> clazz;

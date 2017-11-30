@@ -61,4 +61,17 @@ public class Book {
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Book{");
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", isbn='").append(isbn).append('\'');
+        sb.append(", is_delete=").append(is_delete);
+        sb.append(", updated_at=").append(updated_at);
+        sb.append(", created_at=").append(created_at);
+        sb.append('}');
+        return sb.toString();
+    }
 }

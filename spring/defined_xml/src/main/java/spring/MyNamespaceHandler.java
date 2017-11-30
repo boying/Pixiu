@@ -3,7 +3,7 @@ package spring;
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 
 /**
- * Created by jiangzhiwen on 17/4/12.
+ * Created by boying on 17/4/12.
  */
 public class MyNamespaceHandler extends NamespaceHandlerSupport {
     @Override

@@ -1,7 +1,7 @@
 package spring;
 
 /**
- * Created by jiangzhiwen on 17/4/11.
+ * Created by boying on 17/4/11.
  */
 public class User {
     private String userName;

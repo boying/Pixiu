@@ -4,9 +4,9 @@
 
 <mapper namespace="boying.dao.BookDao">
     <insert id="addBook" parameterType="boying.domain.Book" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO book(name, isbn)
+        INSERT INTO book(name, isbn, created_at, updated_at)
         VALUES
-        (#{name},#{isbn})
+        (#{name},#{isbn}, #{created_at}, #{updated_at})
     </insert>
 
     <update id="deleteBook">
@@ -15,15 +15,27 @@
         WHERE id = #{id}
     </update>
 
+    <delete id="realDeleteBook">
+        DELETE from book
+        WHERE id = #{id}
+    </delete>
+
     <insert id="addBooks" parameterType="java.util.List" flushCache="true">
-        INSERT INTO book(name, isbn)
+        INSERT INTO book(name, isbn, created_at, updated_at)
         VALUES
-        <foreach collection="list" item="item" separator="," open="(" close=")">
-            #{name},#{isbn}
+        <foreach collection="list" item="item" separator=",">
+            (#{item.name},#{item.isbn}, #{item.created_at}, #{item.updated_at})
         </foreach>
     </insert>
 
     <update id="updateBook" parameterType="boying.domain.Book">
+        UPDATE book SET
+        name = #{name},
+        isbn = #{isbn}
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateNameIsbn">
         UPDATE book SET
         name = #{name},
         isbn = #{isbn}

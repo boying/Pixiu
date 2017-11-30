@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * Created by jiangzhiwen on 17/4/12.
+ * Created by boying on 17/4/12.
  */
 public class Main {
     public static void main(String[] args) {

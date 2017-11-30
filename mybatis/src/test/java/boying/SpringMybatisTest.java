@@ -12,6 +12,9 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 /**
  * Created by boying on 2017/11/26.
  */
@@ -57,6 +60,8 @@ public class SpringMybatisTest {
         Book book = new Book();
         book.setName("AName");
         book.setIsbn("Aisbn");
+        book.setUpdated_at(Timestamp.valueOf(LocalDateTime.now()));
+        book.setCreated_at(Timestamp.valueOf(LocalDateTime.now()));
         bookDao.addBook(book);
 
         transactionManager.commit(transaction);
