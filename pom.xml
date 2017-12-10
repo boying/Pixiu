@@ -23,6 +23,7 @@
         <module>security</module>
         <module>jdbc</module>
         <module>mybatis</module>
+        <module>tomcat</module>
     </modules>
 
     <dependencies>
