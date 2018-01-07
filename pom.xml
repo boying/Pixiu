@@ -24,6 +24,7 @@
         <module>jdbc</module>
         <module>mybatis</module>
         <module>tomcat</module>
+        <module>activemq</module>
     </modules>
 
     <dependencies>

@@ -20,9 +20,9 @@ public class Main {
 
             fanoutTemplate.convertAndSend("send to fanout");
 
-            topicTemplate.convertAndSend("a.x", "send to topic, routing key is a.x");
-            topicTemplate.convertAndSend("x.b", "send to topic, routing key is x.b");
-            topicTemplate.convertAndSend("a.b", "send to topic, routing key is a.b");
+            topicTemplate.convertAndSend("a.x", "send to queue, routing key is a.x");
+            topicTemplate.convertAndSend("x.b", "send to queue, routing key is x.b");
+            topicTemplate.convertAndSend("a.b", "send to queue, routing key is a.b");
 
             Thread.sleep(1000);
         }
